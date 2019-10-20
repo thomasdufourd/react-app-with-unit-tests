@@ -1,26 +1,70 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+const course = {
+  name: 'Half Stack application development',
+  parts: [
+    {
+      name: 'Fundamentals of React',
+      exercises: 10
+    },
+    {
+      name: 'Using props to pass data',
+      exercises: 7
+    },
+    {
+      name: 'State of a component',
+      exercises: 14
+    }
+  ]
+}
+
+export const sumNbOfExercises = (parts) => {
+  return parts[0].exercises + parts[1].exercises + parts[2].exercises;
+}
+
+const Header = (props) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>{props.courseName}</h1>
     </div>
-  );
+  )
+}
+
+const Part = (props) => {
+  return (
+    <div>
+      <p>{props.part} {props.exercises}</p>
+    </div>)
+}
+
+const Content = ({parts}) => {
+
+  return (
+    <div>
+      <Part part={parts[0].name} exercises={parts[0].exercises} />
+      <Part part={parts[1].name} exercises={parts[1].exercises} />
+      <Part part={parts[2].name} exercises={parts[2].exercises} />
+    </div>
+  )
+}
+
+const Total = ({parts}) => {
+  return (
+    <div>
+      <p>Nb of exercises {sumNbOfExercises(parts)}</p>
+    </div>
+  )
+}
+
+
+const App = () => {
+  return (
+    <div>
+      <Header courseName={course.name} />
+      <Content parts={course.parts} />
+      <Total parts={course.parts} />
+    </div>
+  )
 }
 
 export default App;
