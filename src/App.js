@@ -19,8 +19,12 @@ const course = {
 }
 
 export const sumNbOfExercises = (parts) => {
-  return parts[0].exercises + parts[1].exercises + parts[2].exercises;
-}
+  return parts
+    .reduce(
+      (nbTotalOfExercises, currentPart) => 
+      nbTotalOfExercises + currentPart.exercises, 0
+    );
+};
 
 const Header = (props) => {
   return (
